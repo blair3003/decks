@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon'
+import Deck from '../components/Deck.astro'
 const allCards = await Astro.glob('../../data/cards/*.md') 
 ---
 
@@ -11,11 +13,13 @@ const allCards = await Astro.glob('../../data/cards/*.md')
 		<title>Astro</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@300&family=Fira+Sans:wght@300&family=Space+Mono&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@300&family=Fira+Sans:wght@300&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
 	</head>
-	<body>
-		<h1 class="text-3xl font-bold underline font-space">
-			Hello world!
-		</h1>
+	<body class="bg-gray-950 text-white">
+		<a class="px-8 my-8 flex justify-between items-center border-b border-cyan-400" href="/">
+			<span class="font-space text-4xl">Decks</span>
+			<Icon class="transform rotate-45 w-12 text-cyan-400/80" name="mdi:chevron-double-up" />
+		</a>
+		<Deck cards={allCards}/>
 	</body>
 </html>

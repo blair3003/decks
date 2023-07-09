@@ -4,7 +4,7 @@
 
 ## The design
 
-I took a mobile-first approach to the design of this application, and started with an iPhone 14 frame. I also wanted to design for dark mode, and since I planned to use Tailwind, I grabbed the RGB codes for the grays in TW as well as an accent teal. The icons were downloaded from Flaticon and masked with the teal.
+I took a mobile-first approach to the design of this application, and started with an iPhone 14 frame. I also wanted to design for dark mode, and since I planned to use Tailwind, I grabbed the RGB codes for the grays in TW as well as an accent cyan. The icons were downloaded from Flaticon and masked with the cyan.
 
 ![Figma design](https://raw.githubusercontent.com/blair3003/decks/master/public/decks-figma.PNG)
 
@@ -12,3 +12,5 @@ I took a mobile-first approach to the design of this application, and started wi
 
 -Data
 -Tailwind
+-Fonts
+-Icons

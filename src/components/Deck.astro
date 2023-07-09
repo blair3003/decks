@@ -1,0 +1,12 @@
+---
+import Card from './Card.astro'
+const { cards } = Astro.props
+---
+
+<div class="p-8">
+    {cards.map(card =>
+        <Card card="card" />
+    )}
+</div>
+
+
