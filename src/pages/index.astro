@@ -9,9 +9,12 @@ const allCards = await Astro.glob('../../data/cards/*.md')
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:wght@300&family=Fira+Sans:wght@300&family=Space+Mono&display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<h1 class="text-3xl font-bold underline">
+		<h1 class="text-3xl font-bold underline font-space">
 			Hello world!
 		</h1>
 	</body>
