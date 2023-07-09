@@ -14,3 +14,4 @@ I took a mobile-first approach to the design of this application, and started wi
 -Tailwind
 -Fonts
 -Icons
+-Components

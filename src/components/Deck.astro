@@ -3,10 +3,36 @@ import Card from './Card.astro'
 const { cards } = Astro.props
 ---
 
-<div class="p-8">
+<div class="pt-8 grow relative">
     {cards.map(card =>
         <Card card={card} />
     )}
 </div>
 
+<style>
+    div > :global(*) {
+        position: absolute;
+        right: 2rem;
+        left: 2rem;
+    }
+    div > :global(:nth-child(1)) {
+        z-index: 9999;
+    }
+    div > :global(:nth-child(2)) {
+        transform: translate(-0.5rem, 1rem);
+        z-index: 999;
+        background-color: rgb(17, 24, 39);
+    }
+    div > :global(:nth-child(3)) {
+        transform: translate(-1rem, 2rem);
+        z-index: 99;
+        background-color: rgb(17, 24, 39);
+    }
+    div > :global(:nth-child(n+2) > *) {
+        border: 0;
+    } 
+    div > :global(:nth-child(n+4)) {
+        left: -9999px;
+    }      
+</style>
 
