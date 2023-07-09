@@ -1,14 +1,44 @@
 ---
-
+import { Icon } from 'astro-icon'
+const { card } = Astro.props
+const { Content } = Astro.props.card
 ---
 
-<div>
-    Card
+<div class="mb-1 bg-gray-800">
+    <div class="p-8 border-b border-cyan-400">
+        <div class="flex pb-8 gap-4">
+            <div class="grow">
+                <div class="pb-2 font-space text-2xl">{card.frontmatter.title}</div>
+                <div class="font-fira text-xs">
+                    <a href="#">{card.frontmatter.author}</a> ¬ {new Date(card.frontmatter.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                </div>
+            </div>
+            <div>
+                <div class="w-12 aspect-square rounded-full grid place-content-center font-space text-2xl bg-cyan-400/80 text-white">
+                    {card.frontmatter.author[1].toUpperCase()}
+                </div>
+            </div>
+        </div>
+        <div class="font-fira-extra pb-16">
+            <Content />
+        </div>
+    </div>
+    <div class="px-8 py-2 pb-48 flex items-center justify-between font-fira text-xs">
+        <button class="flex items-center space-between gap-2" title="Comments">
+            <Icon name="mdi:format-quote-close" class="w-8 text-cyan-400/80" />
+            {card.frontmatter.comments} <span class="sr-only">Comments</span>
+        </button>
+        <button class="flex items-center justify-between gap-2" title="Likes">
+            <Icon name="mdi:check-bold" class="w-6 text-cyan-400/80" />
+            {card.frontmatter.likes} <span class="sr-only">Likes</span>
+        </button>
+        <button class="flex items-center justify-between gap-2" title="Shares">
+            <Icon name="mdi:share" class="w-6 text-cyan-400/80" />
+            {card.frontmatter.shares} <span class="sr-only">Shares</span>
+        </button>
+        <button class="flex items-center justify-between gap-2" title="Decks">
+            <Icon name="mdi:chevron-double-up" class="w-8 text-cyan-400/80" />
+            {card.frontmatter.decks} <span class="sr-only">Decks</span>
+        </button>
+    </div>
 </div>
-
-
-		<!-- <Icon name="mdi:comment-outline" />
-		<Icon name="mdi:check-bold" />
-		<Icon name="mdi:format-quote-close" />
-		<Icon name="mdi:share" />
-		<Icon name="mdi:chevron-double-up" /> -->
