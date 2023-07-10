@@ -1,0 +1,37 @@
+---
+import { Icon } from 'astro-icon'
+
+const { title, icon, value } = Astro.props
+---
+<button class="grow shrink-0 basis-0 flex items-center space-between gap-2 font-fira text-xs" title={title} data-button>
+    <Icon name={icon} class="w-8 text-cyan-400/80" />
+    <span data-value>{value}</span> <span class="sr-only">{title}</span>
+</button>
+
+<script>
+    const buttons = document.querySelectorAll('[data-button]')
+    buttons.forEach(button => {
+        const data = button.querySelector('[data-value]')
+        const initValue = Number(data.textContent)
+        button.addEventListener('click', () => {
+            if (Number(data.textContent) !== initValue) {
+                data.textContent = String(initValue)
+                button.classList.remove('btn-active')
+            } else {
+                data.textContent = String(initValue+1)
+                button.classList.add('btn-active')
+            }
+        })
+    })
+</script>
+
+<style>
+    .btn-active {
+        font-weight: bold;
+    }
+    .btn-active svg {
+        color: rgb(103 232 249);
+        transform: scale(1.2);
+    }
+
+</style>

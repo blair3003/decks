@@ -1,11 +1,21 @@
 ---
 import Card from './Card.astro'
+
 const { cards } = Astro.props
 ---
 
 <div class="grow relative">
     {cards.map(card =>
-        <Card card={card} />
+        <Card 
+            title={card.frontmatter.title}
+            author={card.frontmatter.author}
+            pubDate={card.frontmatter.pubDate}
+            comments={card.frontmatter.comments}
+            likes={card.frontmatter.likes}
+            shares={card.frontmatter.shares}
+            decks={card.frontmatter.decks}
+            content={card}
+        />
     )}
 </div>
 
