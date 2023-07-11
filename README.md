@@ -14,9 +14,9 @@ I took a mobile-first approach to the design of this application, and started wi
 
 After initatiating a new Astro project, I installed some additional packages including Tailwind and Astro Icons, and imported the required fonts from Google Fonts. I then created some dummy markdown files and stored them in a data/cards folder outside of the src files.
 
-I decided to focus on two main components in this application - the Deck and the Card. I could have created more components such as the Card Buttons and Profile Pic but I decided to leave these for a future iteration.
+I decided to focus on two main components in this application - the Deck and the Card. I did create an additional Button component for the interactive card buttons, and I could have created more components such as a Profile Pic, but I have chosen the deck and card as the main focus of the implementation phase.
 
 - The **Deck** was given the responsibility of rendering a collection of Cards provided to it via prop drilling. This included the styling of child elements and controlling their behaviour during user interaction. 
-- The **Card** was given the responsibility of interpreting and displaying the markdown data provided by the Deck, and providing the set of buttons to Like and Share etc.
+- The **Card** was given the responsibility of displaying the data passed to it from the Deck, and providing a set of buttons to Like and Share etc.
 
 For this micro project I decided to keep the scope small such that, the order of the cards in the deck should be controlled by swiping, or dragging to the sides of the screen and the buttons on the card should toggle an increase of 1 when pressed.
