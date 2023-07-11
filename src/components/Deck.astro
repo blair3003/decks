@@ -4,7 +4,7 @@ import Card from './Card.astro'
 const { cards } = Astro.props
 ---
 
-<div class="grow relative">
+<div class="grow">
     {cards.map(card =>
         <Card 
             title={card.frontmatter.title}
@@ -20,29 +20,106 @@ const { cards } = Astro.props
 </div>
 
 <style>
+    div {
+        position: relative;
+    }
     div > :global(*) {
         position: absolute;
         inset: 2rem;
         bottom: 6rem;
-    }
-    div > :global(:nth-child(1)) {
-        z-index: 9999;
-    }
-    div > :global(:nth-child(2)) {
-        transform: translate(-0.5rem, 1rem);
-        z-index: 999;
-        background-color: rgb(17, 24, 39);
-    }
-    div > :global(:nth-child(3)) {
-        transform: translate(-1rem, 2rem);
-        z-index: 99;
-        background-color: rgb(17, 24, 39);
-    }
-    div > :global(:nth-child(n+2) > *) {
+        z-index: 9;
+        cursor: grab;
+        user-select: none;
+        transform: translate(10px, 10px);
+   		transition: transform 0.5s ease-out;
         visibility: hidden;
-    } 
-    div > :global(:nth-child(n+4)) {
-        left: -9999px;
-    }      
+    }
+    div > :global(.first) {
+        z-index: 9999;
+        transform: translate(0, 0);
+        visibility: visible;
+    }
+    div :global(.second) {
+        z-index: 999;
+        transform: translate(-10px, 10px);
+        background-color: rgb(17 24 39);
+        visibility: visible;
+    }
+    div :global(.third) {
+        z-index: 99;
+   		transform: translate(-20px, 20px);
+        background-color: rgb(17 24 39);
+        visibility: visible;
+    }    
 </style>
 
+<script>
+    const cards = document.querySelectorAll('[data-card]')
+    let firstCardIndex = 0
+
+    cards[firstCardIndex].classList.add('first')
+   	cards[firstCardIndex + 1].classList.add('second')
+   	cards[firstCardIndex + 2].classList.add('third')
+
+    cards.forEach(card => {
+
+        let isDragging = false
+        let startPosX = 0
+        let currentPosX = 0
+
+        card.addEventListener('mousedown', handleDragStart)
+        card.addEventListener('mousemove', handleDragMove)
+        card.addEventListener('mouseup', handleDragEnd)
+
+        card.addEventListener('touchstart', handleDragStart)
+        card.addEventListener('touchmove', handleDragMove)
+        card.addEventListener('touchend', handleDragEnd)
+
+        function handleDragStart(event) {
+            isDragging = true
+            startPosX = getPositionX(event)
+        }
+
+        function handleDragMove(event) {
+            if (isDragging) {
+
+                currentPosX = getPositionX(event)
+                const deltaX = currentPosX - startPosX
+
+                if (Math.abs(deltaX) > 100) {
+                    
+                    cards[firstCardIndex].classList.remove('first')
+                    cards[(firstCardIndex + 1) % cards.length].classList.remove('second')
+                    cards[(firstCardIndex + 2) % cards.length].classList.remove('third')
+                    
+                    if (deltaX > 0) {
+                        firstCardIndex = (firstCardIndex + 1) % cards.length
+                    } else if (deltaX < 0) {
+                        firstCardIndex = (firstCardIndex - 1 + cards.length) % cards.length
+                    }
+                    
+                    cards[firstCardIndex].classList.add('first')
+                    cards[(firstCardIndex + 1) % cards.length].classList.add('second')
+                    cards[(firstCardIndex + 2) % cards.length].classList.add('third')
+
+                    isDragging = false
+                }
+            }
+        }
+
+        function handleDragEnd(event) {
+            isDragging = false
+        }
+
+        function getPositionX(event) {
+            if (event.type.startsWith('mouse')) {
+                return event.clientX
+            }
+            if (event.type.startsWith('touch')) {
+                return event.touches[0].clientX
+            }
+        }
+    })
+
+
+</script>

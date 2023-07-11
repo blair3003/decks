@@ -8,6 +8,19 @@ const { title, icon, value } = Astro.props
     <span data-value>{value}</span> <span class="sr-only">{title}</span>
 </button>
 
+<style>
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+    .btn-active {
+        font-weight: bold;
+    }
+    .btn-active svg {
+        color: rgb(103 232 249);
+        transform: scale(1.2);
+    }
+</style>
+
 <script>
     const buttons = document.querySelectorAll('[data-button]')
     buttons.forEach(button => {
@@ -24,18 +37,3 @@ const { title, icon, value } = Astro.props
         })
     })
 </script>
-
-<style>
-    * {
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    .btn-active {
-        font-weight: bold;
-    }
-    .btn-active svg {
-        color: rgb(103 232 249);
-        transform: scale(1.2);
-    }
-
-</style>
